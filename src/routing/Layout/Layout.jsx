@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Route, Redirect } from 'react-router-dom';
 import NavbarComponent from '../../components/Navbar/Navbar';
 import { Grid } from '@material-ui/core';
 
