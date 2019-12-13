@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react';
 import NavbarComponent from '../../components/Navbar/Navbar';
 import { Grid } from '@material-ui/core';
+import Dashboard from '../../components/Dashboard/Dashboard';
 
-export const Layout = ({ component: Component, ...rest }) => {
-  return (
+export const Layout = ({ component: Component, title }) => {
+  return <Dashboard component={Component} title={title} />;
+  /*return (
     <Fragment>
       <NavbarComponent />
       <Grid
@@ -18,5 +20,5 @@ export const Layout = ({ component: Component, ...rest }) => {
         </Grid>
       </Grid>
     </Fragment>
-  );
+  );*/
 };
