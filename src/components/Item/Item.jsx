@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 const Item = ({
   src,
-  subtitle,
+  title,
   description,
   secondaryText,
   action,
@@ -50,7 +50,7 @@ const Item = ({
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1">
-                  {subtitle}
+                  {title}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
                   {description}
@@ -70,7 +70,7 @@ const Item = ({
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">{price}</Typography>
+              <Typography variant="title1">$ {price}.00</Typography>
             </Grid>
           </Grid>
         </Grid>
