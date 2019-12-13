@@ -9,8 +9,7 @@ export default (state = [], action) => {
       PRODUCTS.push(action.payload);
       return PRODUCTS;
     case REMOVE_PRODUCT:
-      PRODUCTS.pop();
-      return PRODUCTS;
+      return action.payload;
     case PURGE:
       return (state = {});
     default:
