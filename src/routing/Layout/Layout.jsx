@@ -1,24 +1,12 @@
-import React, { Fragment } from 'react';
-import NavbarComponent from '../../components/Navbar/Navbar';
-import { Grid } from '@material-ui/core';
+import React from 'react';
 import Dashboard from '../../components/Dashboard/Dashboard';
+import { Route } from 'react-router-dom';
 
-export const Layout = ({ component: Component, title }) => {
-  return <Dashboard component={Component} title={title} />;
-  /*return (
-    <Fragment>
-      <NavbarComponent />
-      <Grid
-        container
-        spacing={5}
-        direction="row"
-        justify="center"
-        alignItems="center"
-      >
-        <Grid item xs={6}>
-          <Component />
-        </Grid>
-      </Grid>
-    </Fragment>
-  );*/
+export const Layout = ({ component: Component, title: Title, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props => <Dashboard component={Component} title={Title} />}
+    />
+  );
 };
