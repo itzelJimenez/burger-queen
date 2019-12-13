@@ -68,11 +68,11 @@ export default function Dashboard({ component: Component, title }) {
           <Grid container spacing={3}>
             {/*CONTENT */}
             {/* Recent Deposits */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12} md={7} lg={8}>
               <Component />
             </Grid>
             {/* Recent Orders */}
-            <Grid item xs={12} md={4} lg={3}>
+            <Grid item xs={12} md={5} lg={4}>
               <Order />
             </Grid>
           </Grid>
