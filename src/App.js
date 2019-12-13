@@ -1,27 +1,18 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { LoginForm } from './components/Login/Login';
-import Dashboard from './components/Dashboard/Dashboard';
 import { BreakfastMenu } from './components/BreakefastMenu/BreakfastMenu';
 import { Home } from './routing/Home/Home';
 import { Menu } from './components/Menu/Menu';
+import { Layout } from './routing/Layout/Layout';
 
 function App() {
-  let breakfastComponent = () => {
-    return <Dashboard component={BreakfastMenu} title="Desayuno" />;
-  };
-
-  let menuComponent = () => {
-    return <Dashboard component={Menu} title="Menú" />;
-  };
-
   return (
     <Router>
       <Switch>
-        <Route path="/breakfast" component={breakfastComponent} />
-        <Route path="/menu" component={menuComponent} />
-        <Route path="/dashboard" component={breakfastComponent} />
+        <Layout path="/menu" component={Menu} title="Menú" />
+        <Layout path="/breakfast" component={BreakfastMenu} title="Desayuno" />
         <Home path="/" component={LoginForm} />
       </Switch>
     </Router>
