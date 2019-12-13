@@ -8,7 +8,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
-      INITIAL_STATE.products.push(action.payload);
+      let articles = INITIAL_STATE.products;
+      articles.push(action.payload);
+      INITIAL_STATE.products = articles;
       return INITIAL_STATE;
     case REMOVE_PRODUCT:
       INITIAL_STATE.token = action.payload;

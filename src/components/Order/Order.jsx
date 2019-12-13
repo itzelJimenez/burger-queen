@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { useSelector, shallowEqual } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,15 +26,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Order = ({ productName, price }) => {
+const Order = () => {
+  const products = useSelector(
+    state => state.orderReducer.products,
+    shallowEqual
+  );
+
+  const getTotal = () => {
+    products.reduce((a, b) => {
+      return Number(a.price) + Number(b.price);
+    });
+  };
+
   const classes = useStyles();
   const total = 125;
-  const products = [
-    { name: 'Some', price: 240 },
-    { name: 'Some', price: 240 },
-    { name: 'Some', price: 240 },
-    { name: 'Some', price: 240 }
-  ];
 
   return (
     <div className={classes.root}>
@@ -54,7 +60,7 @@ const Order = ({ productName, price }) => {
           {products.map(option => (
             <Grid container spacing={2}>
               <Grid item xs={6} container>
-                {option.name}
+                {option.title}
               </Grid>
               <Grid item xs={6} container>
                 ${option.price}.00
@@ -67,7 +73,7 @@ const Order = ({ productName, price }) => {
             Total:
           </Grid>
           <Grid item xs={6} container>
-            ${total}.00
+            ${getTotal()}.00
           </Grid>
         </Grid>
       </Paper>

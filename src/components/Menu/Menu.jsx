@@ -7,12 +7,15 @@ import potatos from '../../assets/potatos.jpg';
 import onions from '../../assets/onions.jpg';
 import water from '../../assets/water.jpg';
 import sodas from '../../assets/refrescos.jpg';
+import { useDispatch } from 'react-redux';
+import { ADD_PRODUCT } from '../../reducers/types';
 
 export const Menu = () => {
-  const action = () => {
-    alert('Hola mundo');
+  const action = (title, price) => {
+    dispatch({ type: ADD_PRODUCT, payload: { title: title, price: price } });
   };
 
+  const dispatch = useDispatch();
   const products = [
     {
       name: 'Hamburguesa simple',
@@ -67,7 +70,7 @@ export const Menu = () => {
             title={option.name}
             description={option.description}
             secondaryText={option.secondaryText}
-            action={e => action(option.title, option.price)}
+            action={e => action(option.name, option.price)}
             actionText="Añadir al carrito"
             price={option.price}
           />
