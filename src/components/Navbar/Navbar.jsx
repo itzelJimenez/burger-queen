@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +21,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NavbarComponent = () => {
+  let history = useHistory();
   const classes = useStyles();
+  const goToDashboard = () => {
+    history.push('/dashboard');
+  };
 
   return (
     <AppBar position="static">
@@ -36,7 +41,9 @@ const NavbarComponent = () => {
         <Typography variant="h6" className={classes.title}>
           Burguer Queen
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" onClick={goToDashboard}>
+          Panel
+        </Button>
       </Toolbar>
     </AppBar>
   );
