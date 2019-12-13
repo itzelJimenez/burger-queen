@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { LoginForm } from './components/Login/Login';
+import Dashboard from './components/Dashboard/Dashboard';
+import { BreakfastMenu } from './components/BreakefastMenu/BreakfastMenu';
+import { Home } from './routing/Home/Home';
+import { Menu } from './components/Menu/Menu';
 
 function App() {
+  let breakfastComponent = () => {
+    return <Dashboard component={BreakfastMenu} title="Desayuno" />;
+  };
+
+  let menuComponent = () => {
+    return <Dashboard component={Menu} title="Menú" />;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/breakfast" component={breakfastComponent} />
+        <Route path="/menu" component={menuComponent} />
+        <Route path="/dashboard" component={breakfastComponent} />
+        <Home path="/" component={LoginForm} />
+      </Switch>
+    </Router>
   );
 }
 
