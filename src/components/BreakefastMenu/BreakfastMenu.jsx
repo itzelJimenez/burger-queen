@@ -11,7 +11,16 @@ import { ADD_PRODUCT } from '../../reducers/types';
 export const BreakfastMenu = ({ component: Component, title }) => {
   const dispatch = useDispatch();
   const action = (title, price) => {
-    dispatch({ type: ADD_PRODUCT, payload: { title: title, price: price } });
+    let item = {
+      id: generateId(),
+      title: title,
+      price: price
+    };
+    dispatch({ type: ADD_PRODUCT, payload: item });
+  };
+
+  const generateId = () => {
+    return new Date().getTime();
   };
 
   const products = [
