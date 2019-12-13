@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,15 +26,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Order = ({ productName, price }) => {
+const Order = () => {
+  const products = useSelector(state => state.orderReducer, []);
+
+  const getTotal = () => {
+    if (products.length > 0) {
+      return products
+        .map(item => item.price)
+        .reduce((prev, next) => prev + next);
+    }
+    return 0;
+  };
+
   const classes = useStyles();
-  const total = 125;
-  const products = [
-    { name: 'Some', price: 240 },
-    { name: 'Some', price: 240 },
-    { name: 'Some', price: 240 },
-    { name: 'Some', price: 240 }
-  ];
 
   return (
     <div className={classes.root}>
@@ -50,24 +55,26 @@ const Order = ({ productName, price }) => {
           </Grid>
         </Grid>
 
-        <Grid>
-          {products.map(option => (
-            <Grid container spacing={2}>
-              <Grid item xs={6} container>
-                {option.name}
+        {products && products.length > 0 ? (
+          <Grid>
+            {products.map(option => (
+              <Grid container spacing={2}>
+                <Grid item xs={6} container>
+                  {option.title}
+                </Grid>
+                <Grid item xs={6} container>
+                  ${option.price}.00
+                </Grid>
               </Grid>
-              <Grid item xs={6} container>
-                ${option.price}.00
-              </Grid>
-            </Grid>
-          ))}
-        </Grid>
+            ))}
+          </Grid>
+        ) : null}
         <Grid container spacing={2}>
           <Grid item xs={6} container>
             Total:
           </Grid>
           <Grid item xs={6} container>
-            ${total}.00
+            ${getTotal()}.00
           </Grid>
         </Grid>
       </Paper>

@@ -5,10 +5,13 @@ import coffe1 from '../../assets/coffe1.jpeg';
 import milk from '../../assets/milk-coffe.jpg';
 import sandwich from '../../assets/sandwich.jpg';
 import juice from '../../assets/juice.jpg';
+import { useDispatch } from 'react-redux';
+import { ADD_PRODUCT } from '../../reducers/types';
 
 export const BreakfastMenu = ({ component: Component, title }) => {
+  const dispatch = useDispatch();
   const action = (title, price) => {
-    console.log(title, price);
+    dispatch({ type: ADD_PRODUCT, payload: { title: title, price: price } });
   };
 
   const products = [
@@ -50,7 +53,7 @@ export const BreakfastMenu = ({ component: Component, title }) => {
             title={option.name}
             description={option.description}
             secondaryText={option.secondaryText}
-            action={e => action(option.title, option.price)}
+            action={e => action(option.name, option.price)}
             actionText="Añadir al carrito"
             price={option.price}
           />
