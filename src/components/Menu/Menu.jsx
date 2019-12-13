@@ -70,7 +70,7 @@ export const Menu = () => {
             title={option.name}
             description={option.description}
             secondaryText={option.secondaryText}
-            action={e => action(option.name, option.price)}
+            action={() => action(option.name, option.price)}
             actionText="Añadir al carrito"
             price={option.price}
           />
